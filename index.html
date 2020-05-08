@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+        <link rel="stylesheet" type="text/css" href="animation.css" />
+        <link rel="stylesheet" type="text/css" href="index.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/styles/default.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.18.1/highlight.min.js"></script>
+    </head>
+    <body>
+        <div class="nav">
+            <div class="title">
+                <h2>小陆工具箱</h2>
+            </div>
+            <ul>
+                <li><a href="#tipMain">提示框</a></li>
+                <li><a href="#imgMain">图片箱</a></li>
+                <li><a href="#NoticeMain">弹窗公告</a></li>
+                <li><a href="#silderMain">轮播图</a></li>
+            </ul>
+        </div>
+
+        <div class="main">
+            <div class="tipMain" id="tipMain">
+                <h2>提示框</h2>
+                <hr>
+                <button type="button" onclick="tipDemo('leftTop','leftTop')">leftTop</button>
+                <button type="button" onclick="tipDemo('rightTop','rightTop')">rightTop</button>
+                <button type="button" onclick="tipDemo('centerTop','centerTop')">centerTop</button>
+                <button type="button" onclick="tipDemo('leftBottom','leftBottom')">leftBottom</button>
+                <button type="button" onclick="tipDemo('centerBottom','centerBottom')">centerBottom</button>
+                <button type="button" onclick="tipDemo('rightBottom','rightBottom')">rightBottom</button>
+                <pre>
+                    <code class="js">
+/**
+ **  msgTest{string}  信息
+ **  msgTimer{number} 提示框出现时间
+ **  msgColor{string} 提示框颜色
+ **  msgAxis{string}  提示框出现方向 leftTop rightTop centerTop leftBottom centerBottom rightBottom
+ **  xNum{string}     x轴距离 px % rem ...
+ **  yNum{string}     y轴距离 px % rem ...
+ **  zIndex{string}   该元素层级
+ **/
+binyui.TipShow('显示信息', {
+    msgTimer: 5,
+    msgColor: '#000',
+    msgAxis: 'centerBottom',
+    xNum: '1%',
+    yNum: '1%',
+    zIndex: '99999'
+});
+                    </code>
+                </pre><br><br>
+            </div>
+            <div class="NoticeMain" id="NoticeMain">
+                <h2>弹窗公告</h2>
+                <hr>
+                <button type="button" onclick="NoticeShow()">点击弹出公告</button>
+                <pre>
+                    <code class="js">
+/**
+ **  title{string}  公告标题
+ **  message{Array} 公告内容
+ **  width{string}  元素宽度
+ **  height{string} 元素高度
+ **  amin{string}   元素出场动画
+ **  zIndex{string} 该元素层级
+ **/
+binyui.Notice({
+    title: '公告',
+    message: [
+        '我是一条公告我是一条公告我是一条公告',
+        '我是一条公告我是一条公告我是一条公告我是一条公告我是一条公告',
+        '11111111',
+        '22222222222222222222222',
+    ]
+}, {
+    width: '500px',
+    height: '500px',
+    amin: 'fadeInDown',
+    zIndex: '9999'
+});
+                    </code>
+                </pre><br><br>
+            </div>
+            <div class="imgMain" id="imgMain">
+                <h2>图片箱</h2>
+                <hr><br>
+                <img src='https://photo.scol.com.cn/items/201911/19110310242748200010DFE2.jpg' alt="我是图片1" width="150" />
+                <img src='https://photo.scol.com.cn/items/201911/191113090348628000111B8D.jpg' alt="我是图片2" width="150" />
+                <img src='https://photo.scol.com.cn/items/201911/191113090212018000111B8C.jpg' alt="我是图片3" width="150" />
+                <img src='https://photo.scol.com.cn/items/201911/191113090530732000111B8E.jpg' alt="我是图片4" width="150" />
+                
+                <pre>
+                    <code class="js">
+/**
+ **  callback{fn}      回调事件
+ **  imgBoxId{string}  图片箱ID
+ **/
+binyui.ImgShow(function(){}, 'BinyImgBoxId');
+                    </code>
+                </pre><br><br>
+            </div>
+            <div class="silderMain" id="silderMain">
+                <h2>轮播图</h2>
+                <hr><br>
+                <div class="BinySilderDemo"></div>
+                <pre>
+                    <code class="js">
+/**
+ **  BinySilderImg{Array}       用户自定义轮播图数组
+ **  BinySilderSetting{Object}   用户自定义设置
+ **/
+binyui.Silder([
+    'https://photo.scol.com.cn/items/201911/19110310242748200010DFE2.jpg',
+    'https://photo.scol.com.cn/items/201911/191113090348628000111B8D.jpg',
+    'https://photo.scol.com.cn/items/201911/191113090212018000111B8C.jpg'
+], {
+    SilderId: '.BinySilderDemo', //要放置轮播图的盒子ID
+    SilderTimer: true, //轮播图定时器开启
+    SilderTimes: 3, //轮播图每3秒下一张
+    SilderWidth: '1000px', //轮播图盒子宽度
+    SilderHight: '500px', //轮播图盒子高度
+    SilderImgSize: 'cover', //轮播图平铺方式
+    SilderImgRadius: '0px', //轮播图圆角
+    SilderLeftAmin: 'bounceInUp', //点击上一张动画类名（Animation.css）
+    SilderLeftAminTime: '1s', //点击上一张动画做的时长
+    SilderRightAmin: 'bounceIn', //点击下一张动画类名（Animation.css）
+    SilderRightAminTime: '1s', //点击下一张动画做的时长
+    SilderHideAmin: 'fadeOut', //动画消失类名（Animation.css）
+    SilderHideAminTime: '1s', //动画消失做的时长
+    SilderRandomAmin: true, //动画随机
+    SilderClickBtn: true, //可否点击按钮
+});
+                    </code>
+                </pre><br><br>
+            </div>
+        </div>
+        <div class="clear"></div>
+    </body>
+    <script src="Biny.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        hljs.initHighlightingOnLoad();
+        
+        
+        
+        /**
+         **  imgBoxId  预览图ID
+         **/
+        binyui.ImgShow(() => {
+            binyui.TipShow('鼠标滚轮、拖拽可对图片放大、缩小，拖动', {
+                msgTimer: 5,
+                msgColor: '#000',
+                msgAxis: 'centerBottom',
+                xNum: '1%',
+                yNum: '1%',
+                zIndex: '99999'
+            });
+        }, 'BinyImgBoxId');
+        
+        
+        
+        /**
+         **  Notice          用户自定义公告内容
+         **  NoticeSetting   用户自定义设置
+         **/
+        function NoticeShow() {
+            binyui.Notice({
+                title: '公告',
+                message: [
+                    '我是一条公告我是一条公告我是一条公告',
+                    '我是一条公告我是一条公告我是一条公告我是一条公告我是一条公告',
+                    '11111111',
+                    '22222222222222222222222',
+                ]
+            }, {
+                width: '500px',
+                height: '500px',
+                amin: 'fadeInDown',
+                zIndex: '9999'
+            });
+        }
+
+
+        /**
+         **  msgTest  信息
+         **  msgTimer 提示框出现时间
+         **  msgColor 提示框颜色
+         **  msgAxis  提示框出现方向 leftTop rightTop centerTop leftBottom centerBottom rightBottom
+         **  xNum     x轴距离 px % rem ...
+         **  yNum     y轴距离 px % rem ...
+         **/
+        function tipDemo(msg, msgAxis) {
+            binyui.TipShow(msg, {
+                msgTimer: 3,
+                msgColor: '#000',
+                msgAxis,
+                zIndex: '999'
+            });
+        }
+
+
+        /**
+         **  BinySilderImg       用户自定义轮播图数组
+         **  BinySilderSetting   用户自定义设置
+         **/
+        binyui.Silder([
+            'https://photo.scol.com.cn/items/201911/19110310242748200010DFE2.jpg',
+            'https://photo.scol.com.cn/items/201911/191113090348628000111B8D.jpg',
+            'https://photo.scol.com.cn/items/201911/191113090212018000111B8C.jpg'
+        ], {
+            SilderId: '.BinySilderDemo', //要放置轮播图的盒子ID
+            SilderTimer: true, //轮播图定时器开启
+            SilderTimes: 3, //轮播图每3秒下一张
+            SilderWidth: '1000px', //轮播图盒子宽度
+            SilderHight: '500px', //轮播图盒子高度
+            SilderImgSize: 'cover', //轮播图平铺方式
+            SilderImgRadius: '0px', //轮播图圆角
+            SilderLeftAmin: 'bounceInUp', //点击上一张动画类名（Animation.css）
+            SilderLeftAminTime: '1s', //点击上一张动画做的时长
+            SilderRightAmin: 'bounceIn', //点击下一张动画类名（Animation.css）
+            SilderRightAminTime: '1s', //点击下一张动画做的时长
+            SilderHideAmin: 'fadeOut', //动画消失类名（Animation.css）
+            SilderHideAminTime: '1s', //动画消失做的时长
+            SilderRandomAmin: true, //动画随机
+            SilderClickBtn: true, //可否点击按钮
+        });
+    </script>
+
+</html>
